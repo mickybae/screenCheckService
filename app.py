@@ -6,6 +6,7 @@ import mysql.connector
 import cv2
 import numpy as np
 import hashlib
+import random
 from jsonify.convert import jsonify
 import urllib.request
 import matplotlib
@@ -206,6 +207,54 @@ def valid_check(strUri, arrValue):
 
     return result
 
+def check_usertoken(target, userid, token):
+    result = False
+    if target == "web":
+        try:
+            conn = mysql.connector.connect(user='K2020509', password='K2020513',
+                                           host='dbscs.cf0f2mdds5gb.ap-northeast-2.rds.amazonaws.com',
+                                           database='METAGENSERVICE')
+            curs = conn.cursor()
+            strSql = "SELECT WEBTOKEN.WEBTOKEN FROM METAGENSERVICE.WEBTOKEN "
+            strSql = strSql + " WHERE WEBTOKEN.MEMBER_MID = '" + userid + "' order by LASTUSEDATE DESC LIMIT 1"
+            curs.execute(strSql)
+            rows = curs.fetchall()
+            if not rows:
+                result = False
+            elif rows[0][0].strip() == token.strip():
+                result = True
+            else:
+                result = False
+            conn.commit()
+        except Exception as e:
+            return str(e)
+        finally:
+            conn.close()
+
+    elif target == "openapi":
+        try:
+            conn = mysql.connector.connect(user='K2020509', password='K2020513',
+                                           host='dbscs.cf0f2mdds5gb.ap-northeast-2.rds.amazonaws.com',
+                                           database='METAGENSERVICE')
+            curs = conn.cursor()
+            strSql = "SELECT OPENAPITOKEN.APITOKEN FROM METAGENSERVICE.OPENAPITOKEN "
+            strSql = strSql + " WHERE OPENAPITOKEN.MEMBER_MID = '" + userid + "' order by CREATEDDATE ASC LIMIT 1"
+            curs.execute(strSql)
+            rows = curs.fetchall()
+            if not rows:
+                result = False
+            elif rows[0][0] == token:
+                result = True
+            else:
+                result = False
+            conn.commit()
+        except Exception as e:
+            return str(e)
+        finally:
+            conn.close()
+
+    return result
+
 #회원가입
 @app.route('/member/register', methods=['GET', 'POST'])
 def register():
@@ -249,7 +298,7 @@ def register():
             resultDict['code'] = "C0000"
             resultDict['message'] = 'SUCCESS'
             resultDict['data'] = resultList
-            print(resultDict)
+            # print(resultDict)
         else:
             resultDict['code'] = "E0000"
             resultDict['message'] = 'ERROR'
@@ -276,8 +325,7 @@ def idcheck(userid):
 
                 curs.execute(strSql)
                 rows = curs.fetchall()
-                print(rows[0][0])
-
+                # print(rows[0][0])
                 if rows[0][0] > 0:
                     resultList['result'] = False
                 else:
@@ -299,6 +347,96 @@ def idcheck(userid):
 
     return json.dumps(resultDict)
 
+#로그인
+@app.route('/member/login', methods=['GET', 'POST'])
+def login():
+    arrValue = {} #dict구조체 사용
+    resultDict = {}
+    resultList = {}
+    if request.method == 'POST':
+        arrValue['userId'] = request.form.get("userid")
+        arrValue['userPasswd'] = request.form.get("userpasswd")
+
+        if valid_check('register', arrValue) == True :
+            try:
+                conn = mysql.connector.connect(user='K2020509', password='K2020513',
+                                               host='dbscs.cf0f2mdds5gb.ap-northeast-2.rds.amazonaws.com',
+                                               database='METAGENSERVICE')
+                curs = conn.cursor()
+                strSql = "SELECT COUNT(MID) as MIDCOUNT FROM METAGENSERVICE.MEMBER"
+                strSql = strSql + " WHERE MID = '" + arrValue['userId'] + "' and MPASSWD = '" + arrValue['userPasswd'] + "' "
+
+                curs.execute(strSql)
+                rows = curs.fetchall()
+                # print(rows[0][0])
+
+                if rows[0][0] > 0:
+                    arrValue['webToken'] = get_hash_value(arrValue['userId'] + str(random.uniform(1000, 9999)), in_digest_bytes_size=64, in_return_type='hexdigest')
+                    strSql = "INSERT INTO METAGENSERVICE.WEBTOKEN"
+                    strSql = strSql + "(WEBTOKEN, MEMBER_MID, LASTUSEDATE)"
+                    strSql = strSql + " VALUES (%s, %s, now())"
+                    curs.execute(strSql, (arrValue['webToken'], arrValue['userId']))
+                    conn.commit()
+                    resultList['web_token'] = arrValue['webToken']
+                else:
+                    resultList['result'] = "No id or password"
+
+                resultDict['code'] = "C0000"
+                resultDict['message'] = 'SUCCESS'
+                resultDict['data'] = resultList
+
+                conn.commit()
+            except Exception as e:
+                return str(e)
+            finally:
+                conn.close()
+
+        else:
+            resultDict['code'] = "E0000"
+            resultDict['message'] = 'ERROR'
+
+    return json.dumps(resultDict)
+
+#사용자 웹토큰과 아이디를 받아 유효하면 OPENAPI TOKEN 조회
+@app.route('/member/getapitoken', methods=['GET', 'POST'])
+def getapitoken():
+    arrValue = {} #dict구조체 사용
+    resultDict = {}
+    resultList = {}
+    if request.method == 'GET':
+        arrValue['userid'] = request.args['userid']
+        arrValue['api_token'] = request.args['api_token']
+        if check_usertoken('web', arrValue['userid'], arrValue['api_token']):
+            try:
+                conn = mysql.connector.connect(user='K2020509', password='K2020513',
+                                               host='dbscs.cf0f2mdds5gb.ap-northeast-2.rds.amazonaws.com',
+                                               database='METAGENSERVICE')
+                curs = conn.cursor()
+                strSql = "SELECT APITOKEN FROM METAGENSERVICE.OPENAPITOKEN "
+                strSql = strSql + " WHERE MEMBER_MID = '" + arrValue['userid'] + "' order by CREATEDDATE ASC LIMIT 1"
+                curs.execute(strSql)
+                rows = curs.fetchall()
+                if not rows:
+                    resultList['api_token'] = "no have"
+
+                else:
+                    resultList['api_token'] = rows[0][0].strip()
+
+                resultDict['code'] = "C0000"
+                resultDict['message'] = 'SUCCESS'
+                resultDict['data'] = resultList
+
+                conn.commit()
+            except Exception as e:
+                return str(e)
+            finally:
+                conn.close()
+
+        else:
+            resultDict['code'] = "E0000"
+            resultDict['message'] = 'ERROR'
+
+    return json.dumps(resultDict)
 
 
 
