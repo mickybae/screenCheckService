@@ -1,15 +1,17 @@
+import json
 import sys
-
 from flask import Flask
+from flask import request
 import mysql.connector
 import cv2
 import numpy as np
+import hashlib
+from jsonify.convert import jsonify
+import urllib.request
 import matplotlib
 from matplotlib import pyplot as plt
-import urllib.request
 
-global conn
-# conn = mysql.connector.connect(user='K2020509', password='K2020513',host='dbscs.cf0f2mdds5gb.ap-northeast-2.rds.amazonaws.com',database='METAGENSERVICE')
+
 
 app = Flask(__name__)
 
@@ -87,7 +89,6 @@ def checker_FPM_ORB(src1, src2, optvalue):
     #Draw first 10 matches
 
     return result
-
 
 def checker_CS(src1, src2, optvalue):
     if src1 is None or src2 is None:
@@ -178,6 +179,130 @@ def makeScreenShot():
 
     result = "Good job"
     return result
+
+# 여기 이하로는 웹 API 및 서비스 API 구분
+# 여기 이하로는 웹 API 및 서비스 API 구분
+# 여기 이하로는 웹 API 및 서비스 API 구분
+# 여기 이하로는 웹 API 및 서비스 API 구분
+# 여기 이하로는 웹 API 및 서비스 API 구분
+def get_hash_value(in_str, in_digest_bytes_size=64, in_return_type='digest'):
+    assert 1 <= in_digest_bytes_size and in_digest_bytes_size <= 64
+    blake  = hashlib.blake2b(in_str.encode('utf-8'), digest_size=in_digest_bytes_size)
+    if in_return_type == 'hexdigest': return blake.hexdigest()
+    elif in_return_type == 'number': return int(blake.hexdigest(), base=16)
+    return blake.digest()
+
+def checkSpace(arrObj): #빈 변수확인
+    result = True
+    for data in arrObj:
+        if data == "":
+            result = False
+    return result
+
+def valid_check(strUri, arrValue):
+    result = False
+    if strUri == "register": #벨리데이션 체크등록
+        result = True
+
+    return result
+
+#회원가입
+@app.route('/member/register', methods=['GET', 'POST'])
+def register():
+    arrValue = {} #dict구조체 사용
+    resultDict = {}
+    resultList = {}
+    if request.method == 'POST':
+        arrValue['userId'] = request.form.get('userid')
+        arrValue['userPasswd1'] = request.form.get('userpasswd1')
+        arrValue['userPasswd2'] = request.form.get('userpasswd2')
+        arrValue['userCompanyName'] = request.form.get('usercompanyname')
+        arrValue['userName'] = request.form.get('username')
+        arrValue['userEmail'] = request.form.get('useremail')
+        arrValue['userTelno'] = request.form.get('usertelno')
+        arrValue['apiToken'] = get_hash_value(arrValue['userId'], in_digest_bytes_size=64, in_return_type='hexdigest')
+        if valid_check('register', arrValue) == True :
+            try:
+                conn = mysql.connector.connect(user='K2020509', password='K2020513',
+                                               host='dbscs.cf0f2mdds5gb.ap-northeast-2.rds.amazonaws.com',
+                                               database='METAGENSERVICE')
+                curs = conn.cursor()
+                strSql = "INSERT INTO METAGENSERVICE.MEMBER"
+                strSql = strSql + "(MID, MPASSWD, MCOMPNAME, MUSERNAME, MCONTACTEMAIL, MCONTACTTELNO, CREATEDDATE)"
+                strSql = strSql + " VALUES (%s, %s, %s, %s, %s, %s, now())"
+                curs.execute(strSql, (arrValue['userId'], arrValue['userPasswd1'], arrValue['userCompanyName'], arrValue['userName'], arrValue['userEmail'], arrValue['userTelno']))
+                conn.commit()
+                curs = conn.cursor()
+                strSql = "INSERT INTO METAGENSERVICE.OPENAPITOKEN"
+                strSql = strSql + "(APITOKEN, MEMBER_MID, CREATEDDATE)"
+                strSql = strSql + " VALUES (%s, %s, now())"
+                curs.execute(strSql, (arrValue['apiToken'], arrValue['userId']))
+                conn.commit()
+            except Exception as e:
+                return str(e)
+            finally:
+                conn.close()
+
+            resultList['userId'] = arrValue['userId']
+            resultList['apiToken'] = arrValue['apiToken']
+
+            resultDict['code'] = "C0000"
+            resultDict['message'] = 'SUCCESS'
+            resultDict['data'] = resultList
+            print(resultDict)
+        else:
+            resultDict['code'] = "E0000"
+            resultDict['message'] = 'ERROR'
+
+    return json.dumps(resultDict)
+
+#로그인 전 ID 체크
+@app.route('/member/idcheck/<userid>', methods=['GET', 'POST'])
+def idcheck(userid):
+    arrValue = {} #dict구조체 사용
+    resultDict = {}
+    resultList = {}
+    if request.method == 'GET':
+        arrValue['userId'] = userid
+
+        if valid_check('register', arrValue) == True :
+            try:
+                conn = mysql.connector.connect(user='K2020509', password='K2020513',
+                                               host='dbscs.cf0f2mdds5gb.ap-northeast-2.rds.amazonaws.com',
+                                               database='METAGENSERVICE')
+                curs = conn.cursor()
+                strSql = "SELECT COUNT(MID) as MIDCOUNT FROM METAGENSERVICE.MEMBER"
+                strSql = strSql + " WHERE MID = '" + arrValue['userId'] + "'"
+
+                curs.execute(strSql)
+                rows = curs.fetchall()
+                print(rows[0][0])
+
+                if rows[0][0] > 0:
+                    resultList['result'] = False
+                else:
+                    resultList['result'] = True
+
+                resultDict['code'] = "C0000"
+                resultDict['message'] = 'SUCCESS'
+                resultDict['data'] = resultList
+
+                conn.commit()
+            except Exception as e:
+                return str(e)
+            finally:
+                conn.close()
+
+        else:
+            resultDict['code'] = "E0000"
+            resultDict['message'] = 'ERROR'
+
+    return json.dumps(resultDict)
+
+
+
+
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=9900, debug=True)
