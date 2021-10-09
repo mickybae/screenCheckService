@@ -16,21 +16,9 @@ from matplotlib import pyplot as plt
 
 app = Flask(__name__)
 
-def getList():
-    global conn
-    curs = conn.cursor()
-    sql = "SELECT SEARCHKEY, CONCAT(CATEID,'^^',ITEMID) AS ITEMKEY, KEYNUM, SEARCHCOUNT, CLICKCOUNT, LENGTH(SEARCHKEY) AS KEYLENGTH " \
-    "FROM SEARCHDATA " \
-    "WHERE SEARCHKEY LIKE '%"+tempText+"%' " \
-    "ORDER BY CLICKCOUNT DESC, SEARCHCOUNT DESC, KEYLENGTH DESC, MODIFIEDTIME DESC"
-    curs.execute(sql)
-    # data Fetch
-    result = curs.fetchall()
-    conn.close
-    return result
-
 def save_video(fileUrl, fileid):
     savename = "./workfiles/" + fileid + ".mp4"
+    #print(savename)
     urllib.request.urlretrieve(fileUrl, savename)
 
 #Feature point matching
@@ -53,8 +41,8 @@ def checker_FPM_ORB(src1, src2, optvalue):
     matcher = cv2.BFMatcher_create()
     # matcher = cv2.BFMatcher_create(cv2.NORM_HAMMING) # 이진 기술자를 사용하는 알고리즘
     # matches = matcher.match(desc1, desc2)
-    print('# of kp1:', len(kp1))
-    print('# of kp2:', len(kp2))
+    # print('# of kp1:', len(kp1))
+    # print('# of kp2:', len(kp2))
     pt1 = len(kp1)
     pt2 = len(kp2)
     rate = 0
@@ -130,56 +118,118 @@ def save_checker(obj1, obj2): #파일저장조건확인
         checkPoint += 1
     if checkPoint == 2:
         result = True
-
+        #print(result)
     return result
 
-@app.route('/')
-def screenCapture():  # put application's code here
-    return 'Hello World!'
-
-@app.route('/makeScreenShot', methods=['GET', 'POST'])
+@app.route('/makeScreenShot')
 def makeScreenShot():
-    print("call to makeScreenShot")
+    #print("call to makeScreenShot")
     # target = getList()
     # for row in target:
     #     print(row)
+    resultDict = {}
+    resultList = []
+    try:
+        conn = mysql.connector.connect(user='K2020509', password='K2020513',
+                                       host='dbscs.cf0f2mdds5gb.ap-northeast-2.rds.amazonaws.com',
+                                       database='METAGENSERVICE')
+        curs = conn.cursor()
+        strSql = "SELECT CID, CONTENTURL, SENSETIVESECOND, OPTIONOCR, OPTIONOBJDETECT, CONTENTLANGUAGE FROM METAGENSERVICE.CONTENTMASTER WHERE STATUS = 'STAY' ORDER BY CID DESC"
+        curs.execute(strSql)
+        rows = curs.fetchall()
+        #print(rows)
+        conn.commit()
+    except Exception as e:
+        return str(e)
 
-    #파일 아이디와 URL을 받으면
-    fUrl = "http://127.0.0.1/datas/test2.mp4"
-    fId = "C000002"
-    fSensetive = 3 #초당 프레임수
-    fStt = True
-    #
-    #파일을 다운로드 하고
-    save_video(fUrl, fId)
-    vidcap = cv2.VideoCapture("./workfiles/" + fId + ".mp4")
-    count = 0
-    obj1 = None
-    pre_filename = ""
-    while vidcap.isOpened():
-        ret, image = vidcap.read()
-        filename = fId + "_" + str(int(vidcap.get(1))) + ".png"
-        if pre_filename == filename:
-            break
-        else:
-            pre_filename = filename
-        if count == 0:
-            obj1 = image
-            cv2.imwrite('./pictures/' + filename, image)
-        elif (int(vidcap.get(1)) % (fSensetive*30)) == 0:
-            if image is None:
+    finally:
+        conn.close()
+
+    for i in rows:
+        fId = str(i[0])
+        fUrl = i[1]
+        fSensetive = i[2]
+        # 파일 아이디와 URL을 받으면
+        #print(fId)
+        # print(fUrl)
+        # print(fSensetive)
+        #파일 아이디와 URL을 받으면
+        # fUrl = "http://127.0.0.1/datas/test2.mp4"
+        # fId = "C000002"
+        # fSensetive = 3 #초당 프레임수
+
+        # 파일을 다운로드 하고
+        save_video(fUrl, fId)
+        vidcap = cv2.VideoCapture("./workfiles/" + fId + ".mp4")
+        count = 0
+        obj1 = None
+        pre_filename = ""
+        while vidcap.isOpened():
+            #print(fId)
+            ret, image = vidcap.read()
+            filename = fId + "_" + str(int(vidcap.get(1))) + ".png"
+            if pre_filename == filename:
                 break
             else:
-                if (save_checker(obj1, image) == True):
-                    print(filename)
-                    cv2.imwrite('./pictures/' + filename, image)
-                    obj1 = image #저장된 이미지로 변경
+                pre_filename = filename
+            #print("count : " + str(count))
+            if count == 0:
+                obj1 = image
+                cv2.imwrite('./pictures/' + filename, image)
+                resultList.append(fId + "_" + str(int(vidcap.get(1))) + "^^" + str(fId) + "^^" + str(int(vidcap.get(1))))
+            elif (int(vidcap.get(1)) % (fSensetive*30)) == 0: #동영상 프레임수 업그레이드 필요
+                if image is None:
+                    break
+                else:
+                    if (save_checker(obj1, image) == True):
+                        #print(filename)
+                        cv2.imwrite('./pictures/' + filename, image)
+                        obj1 = image #저장된 이미지로 변경
+                        resultList.append(fId + "_" + str(int(vidcap.get(1))) + "^^" + str(fId) + "^^" + str(int(vidcap.get(1))))
+            count += 1
+        vidcap.release()
+    # contentmaster Table의 "STAY" 를 "IN PROGRESS" 로 변경한후
+    for row in rows:
+        #업데이트 조건문 만들기
 
-        count += 1
-    vidcap.release()
+    #업데이트 쿼리문 만들기
 
-    result = "Good job"
-    return result
+
+    #Conn 열고 업데이트 수행 후
+
+
+    #만들어진 씬을 이용해 대량 인서트 쿼리 수행
+    for rows in resultList:
+        row = rows.split("^^")
+        cid = row[0]
+        contentmaster_cid = row[1]
+        time = row[2]
+        print("cid : " + str(cid) + " content,aster_cid : " + str(contentmaster_cid) + " time : " + str(time))
+
+
+
+
+
+
+
+
+    resultDict['code'] = "C0000"
+    resultDict['message'] = 'SUCCESS'
+    resultDict['data'] = ""
+    print(resultList)
+
+
+
+
+
+
+    return json.dumps(resultDict)
+
+@app.route('/')
+def screenCapture():  # put application's code here
+    return 'Welcome to System!'
+
+
 
 # 여기 이하로는 웹 API 및 서비스 API 구분
 # 여기 이하로는 웹 API 및 서비스 API 구분
@@ -432,6 +482,53 @@ def getapitoken():
             finally:
                 conn.close()
 
+        else:
+            resultDict['code'] = "E0000"
+            resultDict['message'] = 'ERROR'
+
+    return json.dumps(resultDict)
+
+#요청내용등록
+@app.route('/content/req_register', methods=['GET', 'POST'])
+def req_register():
+    arrValue = {} #dict구조체 사용
+    resultDict = {}
+    resultList = {}
+    if request.method == 'POST':
+        arrValue['contentTitle'] = request.form.get('contenttitle')
+        arrValue['contentUrl'] = request.form.get('contenturl')
+        arrValue['sensetiveSecond'] = int(request.form.get('senstivesecond'))
+        # arrValue['option_STT'] = request.form.get('option_stt')
+        arrValue['option_OCR'] = request.form.get('option_OCR')
+        arrValue['option_ObjDetect'] = request.form.get('option_ObjDetect')
+        arrValue['contentLanguage'] = request.form.get('contentLanguage')
+        arrValue['api_token'] = request.form.get('api_token')
+        arrValue['userId'] = request.form.get('userid')
+        arrValue['status'] = 'STAY'
+        print(arrValue)
+
+        if (valid_check('register', arrValue)) and (check_usertoken('web', arrValue['userId'], arrValue['api_token'])):
+            try:
+                conn = mysql.connector.connect(user='K2020509', password='K2020513',
+                                               host='dbscs.cf0f2mdds5gb.ap-northeast-2.rds.amazonaws.com',
+                                               database='METAGENSERVICE')
+                curs = conn.cursor()
+                strSql = "INSERT INTO `METAGENSERVICE`.`CONTENTMASTER`"
+                strSql = strSql + "(MEMBER_MID, CONTENTTITLE, CONTENTURL, SENSETIVESECOND, OPTIONOCR, OPTIONOBJDETECT, CONTENTLANGUAGE, STATUS, MODIFIEDDATE, CREATEDDATE )"
+                strSql = strSql + " VALUES (%s, %s, %s, %s, %s, %s, %s, %s, now(), now())"
+                curs.execute(strSql, (arrValue['userId'], arrValue['contentTitle'], arrValue['contentUrl'], arrValue['sensetiveSecond'], arrValue['option_OCR'], arrValue['option_ObjDetect'], arrValue['contentLanguage'], arrValue['status']))
+                conn.commit()
+            except Exception as e:
+                return str(e)
+            finally:
+                conn.close()
+
+            resultList['result'] = True
+
+            resultDict['code'] = "C0000"
+            resultDict['message'] = 'SUCCESS'
+            resultDict['data'] = resultList
+            # print(resultDict)
         else:
             resultDict['code'] = "E0000"
             resultDict['message'] = 'ERROR'
