@@ -2,6 +2,7 @@ import json
 import sys
 from flask import Flask
 from flask import request
+from flask_cors import CORS
 import mysql.connector
 import cv2
 import numpy as np
@@ -12,13 +13,11 @@ import urllib.request
 import matplotlib
 from matplotlib import pyplot as plt
 
-
-
 app = Flask(__name__)
-
+CORS(app)
+#대상영상 저장
 def save_video(fileUrl, fileid):
     savename = "./workfiles/" + fileid + ".mp4"
-    #print(savename)
     urllib.request.urlretrieve(fileUrl, savename)
 
 #Feature point matching
@@ -79,6 +78,7 @@ def checker_FPM_ORB(src1, src2, optvalue):
 
     return result
 
+#화면변환 확인
 def checker_CS(src1, src2, optvalue):
     if src1 is None or src2 is None:
         print('Image load failed!')
@@ -99,6 +99,7 @@ def checker_CS(src1, src2, optvalue):
         result = False
     return result
 
+#변환된 화면저장
 def save_checker(obj1, obj2): #파일저장조건확인
     #이미지 특징벡터 추출
     #obj1 쿼리이미지
@@ -118,9 +119,14 @@ def save_checker(obj1, obj2): #파일저장조건확인
         checkPoint += 1
     if checkPoint == 2:
         result = True
-        #print(result)
+
     return result
 
+
+#주기적으로 웹 호출하여 동작시킴
+#주기적으로 웹 호출하여 동작시킴
+#주기적으로 웹 호출하여 동작시킴
+#주기적으로 웹 호출하여 동작시킴
 @app.route('/makeScreenShot')
 def makeScreenShot():
     #print("call to makeScreenShot")
@@ -188,68 +194,81 @@ def makeScreenShot():
                         resultList.append(fId + "_" + str(int(vidcap.get(1))) + "^^" + str(fId) + "^^" + str(int(vidcap.get(1))))
             count += 1
         vidcap.release()
-    # contentmaster Table의 "STAY" 를 "IN PROGRESS" 로 변경한후
-    for row in rows:
-        #업데이트 조건문 만들기
 
-    #업데이트 쿼리문 만들기
-
-
-    #Conn 열고 업데이트 수행 후
-
-
-    #만들어진 씬을 이용해 대량 인서트 쿼리 수행
+    # contentmaster Table의 "STAY" 를 "PROC" 로 변경한후
+    condition = ""
+    insertValue = ""
+    counter = 0
     for rows in resultList:
         row = rows.split("^^")
         cid = row[0]
         contentmaster_cid = row[1]
         time = row[2]
-        print("cid : " + str(cid) + " content,aster_cid : " + str(contentmaster_cid) + " time : " + str(time))
+        if condition == "":
+            condition = str(contentmaster_cid)
+        else:
+            condition = condition + ", " + str(contentmaster_cid)
 
+        if insertValue == "":
+            insertValue = "('" + cid + "', " + str(contentmaster_cid) + ", " + str(time) + ")"
+        else:
+            insertValue = insertValue + ", ('" + cid + "', " + str(contentmaster_cid) + ", " + str(time) + ")"
+        counter += 1
 
-
-
-
-
-
+    #바뀔께 있으면
+    if condition != "":
+        #Conn 열고 업데이트 수행 후
+        try:
+            conn = mysql.connector.connect(user='K2020509', password='K2020513',
+                                           host='dbscs.cf0f2mdds5gb.ap-northeast-2.rds.amazonaws.com',
+                                           database='METAGENSERVICE')
+            curs = conn.cursor()
+            strSqlUpdate = "UPDATE METAGENSERVICE.CONTENTMASTER SET STATUS = 'PROC' WHERE CID in (" + condition +")"
+            print(strSqlUpdate)
+            curs.execute(strSqlUpdate)
+            strSqlInsert = "INSERT INTO METAGENSERVICE.CMSCENE (SCENE, CONTENTMASTER_CID, TIME) VALUES "
+            strSqlInsert = strSqlInsert + insertValue
+            print(strSqlInsert)
+            curs.execute(strSqlInsert)
+            conn.commit()
+        except Exception as e:
+            return str(e)
+        finally:
+            conn.close()
 
     resultDict['code'] = "C0000"
     resultDict['message'] = 'SUCCESS'
-    resultDict['data'] = ""
-    print(resultList)
-
-
-
-
-
-
+    resultDict['data'] = counter
     return json.dumps(resultDict)
 
+# 여기 이하로는 웹 API 및 서비스 API 구분
+# 여기 이하로는 웹 API 및 서비스 API 구분
+# 여기 이하로는 웹 API 및 서비스 API 구분
+# 여기 이하로는 웹 API 및 서비스 API 구분
+# 여기 이하로는 웹 API 및 서비스 API 구분
+
+#Root 디렉토리
 @app.route('/')
 def screenCapture():  # put application's code here
     return 'Welcome to System!'
 
-
-
-# 여기 이하로는 웹 API 및 서비스 API 구분
-# 여기 이하로는 웹 API 및 서비스 API 구분
-# 여기 이하로는 웹 API 및 서비스 API 구분
-# 여기 이하로는 웹 API 및 서비스 API 구분
-# 여기 이하로는 웹 API 및 서비스 API 구분
+# Key(Token) 만드는곳
 def get_hash_value(in_str, in_digest_bytes_size=64, in_return_type='digest'):
     assert 1 <= in_digest_bytes_size and in_digest_bytes_size <= 64
-    blake  = hashlib.blake2b(in_str.encode('utf-8'), digest_size=in_digest_bytes_size)
+    blake = hashlib.blake2b(in_str.encode('utf-8'), digest_size=in_digest_bytes_size)
     if in_return_type == 'hexdigest': return blake.hexdigest()
     elif in_return_type == 'number': return int(blake.hexdigest(), base=16)
     return blake.digest()
 
-def checkSpace(arrObj): #빈 변수확인
+#변수내용이 비었는지 확인
+def checkSpace(arrObj):
     result = True
     for data in arrObj:
         if data == "":
             result = False
     return result
 
+#각 API별 필수 입력사항 확인하는 부분 - 추가개발 필요
 def valid_check(strUri, arrValue):
     result = False
     if strUri == "register": #벨리데이션 체크등록
@@ -257,16 +276,18 @@ def valid_check(strUri, arrValue):
 
     return result
 
+#사용가능한 토큰인지 확인
 def check_usertoken(target, userid, token):
     result = False
     if target == "web":
         try:
-            conn = mysql.connector.connect(user='K2020509', password='K2020513',
+            conn_inner = mysql.connector.connect(user='K2020509', password='K2020513',
                                            host='dbscs.cf0f2mdds5gb.ap-northeast-2.rds.amazonaws.com',
                                            database='METAGENSERVICE')
-            curs = conn.cursor()
+            curs = conn_inner.cursor()
             strSql = "SELECT WEBTOKEN.WEBTOKEN FROM METAGENSERVICE.WEBTOKEN "
             strSql = strSql + " WHERE WEBTOKEN.MEMBER_MID = '" + userid + "' order by LASTUSEDATE DESC LIMIT 1"
+            print(strSql)
             curs.execute(strSql)
             rows = curs.fetchall()
             if not rows:
@@ -275,18 +296,18 @@ def check_usertoken(target, userid, token):
                 result = True
             else:
                 result = False
-            conn.commit()
+            conn_inner.commit()
         except Exception as e:
             return str(e)
         finally:
-            conn.close()
+            conn_inner.close()
 
     elif target == "openapi":
         try:
-            conn = mysql.connector.connect(user='K2020509', password='K2020513',
+            conn_inner = mysql.connector.connect(user='K2020509', password='K2020513',
                                            host='dbscs.cf0f2mdds5gb.ap-northeast-2.rds.amazonaws.com',
                                            database='METAGENSERVICE')
-            curs = conn.cursor()
+            curs = conn_inner.cursor()
             strSql = "SELECT OPENAPITOKEN.APITOKEN FROM METAGENSERVICE.OPENAPITOKEN "
             strSql = strSql + " WHERE OPENAPITOKEN.MEMBER_MID = '" + userid + "' order by CREATEDDATE ASC LIMIT 1"
             curs.execute(strSql)
@@ -297,12 +318,12 @@ def check_usertoken(target, userid, token):
                 result = True
             else:
                 result = False
-            conn.commit()
+            conn_inner.commit()
         except Exception as e:
             return str(e)
         finally:
-            conn.close()
-
+            conn_inner.close()
+    print(result)
     return result
 
 #회원가입
@@ -535,9 +556,131 @@ def req_register():
 
     return json.dumps(resultDict)
 
+#요청카운트 조회
+@app.route('/content/req_count', methods=['GET', 'POST'])
+def req_count():
+    arrValue = {}  # dict구조체 사용
+    resultDict = {}
+    resultList = {}
+    if request.method == 'GET':
+        arrValue['userid'] = request.args['userid']
+        arrValue['api_token'] = request.args['api_token']
+        if check_usertoken('web', arrValue['userid'], arrValue['api_token']):
+            try:
+                conn = mysql.connector.connect(user='K2020509', password='K2020513',
+                                               host='dbscs.cf0f2mdds5gb.ap-northeast-2.rds.amazonaws.com',
+                                               database='METAGENSERVICE')
+                curs = conn.cursor()
+                strSql = "SELECT COUNT(*) FROM METAGENSERVICE.CONTENTMASTER "
+                strSql = strSql + " WHERE MEMBER_MID = '" + arrValue['userid'] + "' "
+                curs.execute(strSql)
+                rows = curs.fetchall()
+                print(strSql)
+                if not rows:
+                    resultList['api_token'] = "no have"
 
+                else:
+                    resultList['count'] = rows[0][0]
 
+                resultDict['code'] = "C0000"
+                resultDict['message'] = 'SUCCESS'
+                resultDict['data'] = resultList
 
+                conn.commit()
+            except Exception as e:
+                return str(e)
+            finally:
+                conn.close()
+
+        else:
+            resultDict['code'] = "E0000"
+            resultDict['message'] = 'ERROR'
+
+    return json.dumps(resultDict)
+
+#완료카운트 조회
+@app.route('/content/fin_count', methods=['GET', 'POST'])
+def fin_count():
+    arrValue = {}  # dict구조체 사용
+    resultDict = {}
+    resultList = {}
+    if request.method == 'GET':
+        arrValue['userid'] = request.args['userid']
+        arrValue['api_token'] = request.args['api_token']
+        if check_usertoken('web', arrValue['userid'], arrValue['api_token']):
+            try:
+                conn = mysql.connector.connect(user='K2020509', password='K2020513',
+                                               host='dbscs.cf0f2mdds5gb.ap-northeast-2.rds.amazonaws.com',
+                                               database='METAGENSERVICE')
+                curs = conn.cursor()
+                strSql = "SELECT COUNT(*) FROM METAGENSERVICE.CONTENTMASTER "
+                strSql = strSql + " WHERE MEMBER_MID = '" + arrValue['userid'] + "' AND STATUS = 'FINISH' "
+                curs.execute(strSql)
+                rows = curs.fetchall()
+                print(strSql)
+                if not rows:
+                    resultList['count'] = 0
+
+                else:
+                    resultList['count'] = rows[0][0]
+
+                resultDict['code'] = "C0000"
+                resultDict['message'] = 'SUCCESS'
+                resultDict['data'] = resultList
+
+                conn.commit()
+            except Exception as e:
+                return str(e)
+            finally:
+                conn.close()
+
+        else:
+            resultDict['code'] = "E0000"
+            resultDict['message'] = 'ERROR'
+
+    return json.dumps(resultDict)
+
+#요청 및 완료된 목록 조회
+# @app.route('/content/fin_count', methods=['GET', 'POST'])
+# def fin_count():
+#     arrValue = {}  # dict구조체 사용
+#     resultDict = {}
+#     resultList = {}
+#     if request.method == 'GET':
+#         arrValue['userid'] = request.args['userid']
+#         arrValue['api_token'] = request.args['api_token']
+#         if check_usertoken('web', arrValue['userid'], arrValue['api_token']):
+#             try:
+#                 conn = mysql.connector.connect(user='K2020509', password='K2020513',
+#                                                host='dbscs.cf0f2mdds5gb.ap-northeast-2.rds.amazonaws.com',
+#                                                database='METAGENSERVICE')
+#                 curs = conn.cursor()
+#                 strSql = "SELECT COUNT(*) FROM METAGENSERVICE.CONTENTMASTER "
+#                 strSql = strSql + " WHERE MEMBER_MID = '" + arrValue['userid'] + "' AND STATUS = 'FINISH' "
+#                 curs.execute(strSql)
+#                 rows = curs.fetchall()
+#                 print(strSql)
+#                 if not rows:
+#                     resultList['api_token'] = "no have"
+#
+#                 else:
+#                     resultList['count'] = rows[0][0]
+#
+#                 resultDict['code'] = "C0000"
+#                 resultDict['message'] = 'SUCCESS'
+#                 resultDict['data'] = resultList
+#
+#                 conn.commit()
+#             except Exception as e:
+#                 return str(e)
+#             finally:
+#                 conn.close()
+#
+#         else:
+#             resultDict['code'] = "E0000"
+#             resultDict['message'] = 'ERROR'
+#
+#     return json.dumps(resultDict)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=9900, debug=True)
