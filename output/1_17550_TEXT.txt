@@ -1,0 +1,30 @@
+[88,193][240,222]assert "Python 
+[66,168][260,196]driver.get("https: 
+[86,344][230,372]driver.close( 
+[88,296][374,323]elem. send_keys(Keys.RETURN) 
+[388,94][562,121]keys import Keys 
+[159,143][352,170]webdriver.Chrome() 
+[88,270][312,296]elem. send_keys("pycon 
+[66,68][385,94]from selenium import webdriver 
+[400,220][482,246]name("9' 
+[250,220][396,246]~nd_element_by 
+[66,93][312,118]from selenium webdriver 
+[68,220][138,244]# elem 
+[68,246][218,270]# elem. clear() 
+[66,144][136,168]driver 
+[27,297][53,317]10 
+[161,223][209,243]driv 
+[255,197][417,217]in driver title 
+[89,323][155,343]assert 
+[27,323][53,343]11 
+[27,347][53,367]12 
+[171,323][345,343]No results found 
+[75,55][135,71]googlepy > 
+[17,31][83,47]googlepy X 
+[241,7][265,21]Hulp 
+[825,91][854,105]Chro 
+[159,7][181,19]Run 
+[45,7][91,19]Selecuon 
+[99,7][127,19]View 
+[5,55][49,67]selenium 
+[17,7][39,19]Edit 

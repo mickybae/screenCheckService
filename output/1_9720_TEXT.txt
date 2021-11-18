@@ -1,0 +1,26 @@
+[15,59][100,91]Google 
+[148,203][234,223]Downloads 
+[365,203][535,223]WebDriver for Chrome 
+[245,203][355,223]ChromeDriver 
+[266,407][351,425]Ilahnriwar 
+[149,151][215,169]검색결과 약 
+[163,345][289,361]크룹드라이버 버전 확인 
+[163,325][275,341]Chromedriver 사용법 
+[340,247][467,263]Canary channel, please 
+[149,247][329,263]If you are using Chrome from Dev 
+[149,229][637,245]For older version o Chrome, please see below for the version of ChromeDriver that supports 
+[619,115][645,131]선정 
+[477,115][513,131]더브기 
+[209,115][261,131] 이미지 
+[167,115][191,131]전체 
+[149,187][295,201]chromedriver chromium org 
+[151,69][233,83]chromedriver 
+[661,115][685,129]도구 
+[163,307][255,321]ChromeDriver 81 
+[299,327][449,341]Chromedriver version check 
+[299,347][471,361]Chromedriver executable needs 
+[148,391][295,405]chromedriver chromium org 
+[201,411][257,425]snrivor 
+[301,187][361,199]downiloads 
+[511,347][545,359]PATH 
+[377,411][435,423]Chrnma 

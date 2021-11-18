@@ -1,0 +1,5 @@
+[118,110][460,134]Verify you'reahuman to start your free trial 
+[129,151][181,163]Verify Email 
+[586,70][626,78]CONSOLE 
+[642,70][666,78]DOCS 
+[130,186][152,194]Verr 

@@ -1,0 +1,10 @@
+[449,39][493,53]sharo E 
+[717,39][751,53]Bglalk 
+[31,69][57,83]Filos 
+[249,67][293,81]Osauing 
+[201,131][309,145]det Introducelself): 
+[191,169][299,183]class PolicclPcrson) 
+[191,221][255,235]cllass Progrl 
+[159,307][193,321]Python 
+[449,145][521,157]strleltrage) 
+[159,319][183,331][GCC 

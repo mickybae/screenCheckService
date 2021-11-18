@@ -1,0 +1,43 @@
+[21,58][122,82]1ast_height 
+[114,224][174,248]height 
+[491,120][660,144]body.scroliHeight); 
+[21,17][129,37]SCROLL_PAUSE 
+[56,121][113,141]driver 
+[57,329][155,349]1ast_height 
+[229,267][319,287]element_by 
+[89,248][127,268]try: 
+[203,227][307,247]1ast_height: 
+[365,205][651,225]return documentbody. scroliHeight 
+[503,185][617,205]scroll height 
+[57,163][309,183]time.sleep(SCROLL_PAUSE_TIME) 
+[22,372][77,392]images 
+[73,143][223,163]Nait to load page 
+[75,39][189,59]scrol1 height 
+[142,59][197,79]driver 
+[20,79][69,99]while 
+[99,371][301,391]driver.find_elements_by 
+[477,61][625,81]body. scroliHeight 
+[57,207][147,225]new_height 
+[117,123][409,141]execute_script("window. scroliTolo, 
+[203,61][335,79]execute_script( 
+[305,373][421,391]css_selector( 
+[177,331][267,349]new_height 
+[229,207][351,225]execute_script 
+[357,269][437,287]selector( 
+[349,185][497,203]compare With last 
+[73,185][155,203]Calculate 
+[75,81][119,99]True: 
+[73,103][173,121]Scroll down 
+[169,207][223,223]driver 
+[315,187][343,203]and 
+[135,19][173,35]TIME 
+[91,291][153,307]except: 
+[39,41][69,57]Get 
+[177,103][259,119]to bottom 
+[159,189][189,203]new 
+[323,271][351,285]css 
+[83,229][113,243]new 
+[417,125][489,139]document 
+[399,63][471,77]document 
+[339,63][395,77]return 
+[47,455][165,467]handler check_responsel 

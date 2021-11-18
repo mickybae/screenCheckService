@@ -1,0 +1,7 @@
+[41,45][85,61]replsit 
+[387,45][469,61]Update Proflle 
+[301,255][361,269]Firstname 
+[437,255][497,269]Last name 
+[301,287][439,301]Schoolorcornpany name 
+[331,323][399,337]Bio (optional) 
+[301,323][325,335]Add 

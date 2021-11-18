@@ -1,0 +1,27 @@
+[201,39][277,57]Geocoders 
+[441,71][521,85]Maps Bing Kaps 
+[45,407][97,421]Think you! 
+[329,85][453,99]abstracting the services API 
+[99,379][155,393]subscribing 
+[3,349][79,363]Pleise helpkeen 
+[199,309][361,323]Tohnd the address corresponding to 
+[4,232][39,246]Logpna 
+[413,458][475,471]the argument 
+[275,119][329,131]coordinates 
+[366,235][409,247]Ftiror 
+[199,459][241,471]Locators' 
+[199,87][247,99]own class 
+[457,87][599,99]Geocoders each define atleista 
+[393,311][451,323]coordinates; 
+[339,119][609,131]an address Each Geocoder accepts any credentials or settingBs 
+[241,103][335,115]method for resolving 
+[409,103][507,115]strinB and may dehne 
+[555,103][623,115]method which 
+[5,197][27,209]Data 
+[315,163][427,175]address and coordinates: 
+[6,252][36,260]Srvet 
+[332,238][360,246]Avcnr 
+[0,106][36,114]Hurnm 
+[292,376][328,384]address1 
+[314,386][346,394]Berlin 
+[226,218][262,226]Locatior 

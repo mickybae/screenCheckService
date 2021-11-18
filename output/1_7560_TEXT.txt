@@ -1,0 +1,8 @@
+[332,422][564,454]여기로 들어가는 방법은 
+[27,197][411,215](c) 2019 Microsoft Corporation. Al1 rights reserved . 
+[259,181][345,197]18362.1082] 
+[187,229][287,245]venv selenium 
+[25,153][81,167]TERMINAL 
+[97,153][155,167]PROBLFMS 
+[171,153][217,167]OUTPUT 
+[231,153][323,167]DEBUG CONSOLE 

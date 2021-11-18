@@ -1,0 +1,13 @@
+[269,219][399,235]in driver paBe_source 
+[255,57][357,71]keys irport Keys 
+[121,87][235,101]webdriver Chromel) 
+[65,101][107,115]drivcr 
+[177,145][239,159]1n driver . 
+[243,161][321,175]by_name(-9" ) 
+[79,175][155,189]elemclearl) 
+[195,219][229,233]Found 
+[79,235][167,249]driver closel) 
+[97,57][149,69]seleniun 
+[67,87][107,99]driver 
+[65,117][95,129]elem 
+[79,147][119,159]assert 

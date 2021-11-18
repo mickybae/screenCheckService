@@ -1,0 +1,22 @@
+[399,68][523,86]keys import Keys 
+[175,51][399,67]from selenium import webdriver 
+[241,157][383,173]driver find_element 
+[439,229][523,245]driver page 
+[227,211][391,227]send_keys(keys RETURN) 
+[189,175][279,191]elem clearl) 
+[387,157][471,173]by_name("q" 
+[189,193][303,209]elem. send_keysl 
+[189,157][223,173]elem 
+[329,139][421,155]driver title 
+[249,141][297,157]Python 
+[189,247][295,263]driver closel) 
+[189,141][237,155]assert 
+[307,195][347,209]pycon 
+[189,211][223,225]eleml 
+[239,105][361,119]WebdriverChrome 
+[189,229][237,243]assert 
+[247,229][325,243]Noresults 
+[329,229][369,243]found 
+[387,229][413,243]not 
+[175,105][223,119]driver 
+[527,231][575,243]Source 

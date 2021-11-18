@@ -1,0 +1,48 @@
+[430,422][624,454]'하고 한칸 들여쓰고 
+[272,422][370,454]파이선에 
+[559,176][618,201]'height 
+[114,218][174,242]height 
+[502,196][652,220]body.scrollHeight 
+[228,197][498,221]execute_script("return document 
+[203,54][625,75]execute_script("return document body scrollHeight 
+[21,11][129,31]SCROLL_PAUSE 
+[495,117][659,137]body scrollHeight) ; 
+[117,323][317,343]driver.find_elements_by 
+[38,324][95,344]images 
+[211,283][267,303]height 
+[203,221][307,241]1ast_height: 
+[159,179][309,199]new scrol1 height 
+[57,157][309,177]time.sleep(SCROLL_PAUSE_TIME) 
+[73,137][223,157]Nait to load page 
+[89,199][147,219]height 
+[23,53][121,73]1ast_height 
+[183,115][411,135]script("window. scrollTo(o, 
+[417,117][489,135]document 
+[73,95][129,113]Scrol1 
+[75,35][189,53]scrol1 height 
+[451,325][565,343]rg_1.Q4Lukld" ) 
+[357,325][437,343]selector ( 
+[323,263][403,281]selector( 
+[91,243][127,261]try: 
+[203,97][259,113]bottom 
+[23,75][69,91]while 
+[39,35][69,51]Get 
+[75,179][155,195]Calculate 
+[57,117][113,133]driver 
+[135,97][197,113]down to 
+[143,55][197,71]driver 
+[135,13][171,29]TIME 
+[75,75][119,91]True: 
+[169,201][223,217]driver 
+[57,221][79,237]if 
+[289,265][317,279]css 
+[57,203][87,217]new 
+[323,327][351,341]Css 
+[315,181][343,195]and 
+[117,119][181,133]execute 
+[223,379][265,393]click() 
+[83,223][113,237]new 
+[177,287][207,299]new 
+[441,391][505,403]8d , In cHc 
+[17,447][205,459]error_handler check_responselresponse 
+[0,426][24,434]turn 

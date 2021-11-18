@@ -1,0 +1,26 @@
+[201,275][271,293]geopy 2.0 
+[229,83][321,99]Calculating Distince 
+[199,203][285,219]Installation 
+[198,319][269,334]supported The 
+[211,9][253,23]enstablel 
+[57,403][153,417]Jd-Iree by subscribing 
+[199,395][231,409]Bctrid 
+[198,364][285,378]Python 2,7 support 
+[25,345][133,359]Support Read the Docs! 
+[541,307][575,321]Epypy3 
+[4,293][49,307]Changclog 
+[459,453][481,467]20, 
+[229,159][279,173]Chan3clog 
+[229,113][281,127]Exceptions 
+[67,37][101,49]ScoPy 
+[229,99][253,111]Data 
+[245,69][279,81]Yandex 
+[473,365][525,377]marwy other 
+[245,55][307,67]What3Words 
+[63,55][93,67]) 
+[199,439][251,451]introduccd 
+[239,453][273,465]switch) 
+[413,307][491,319]Q2 Only Python 
+[6,188][48,196]Ccocodcrs 
+[526,426][552,434]DtE 
+[358,440][404,448]chrrvnir 

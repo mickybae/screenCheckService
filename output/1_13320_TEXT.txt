@@ -1,0 +1,23 @@
+[312,101][383,121]Firefox() 
+[175,120][303,139]driver get("http: 
+[399,68][523,86]keys import Keys 
+[175,245][281,263]driver closel) 
+[175,210][375,228]elem. send_keys(Keys RETURN) 
+[175,192][339,209]elemi. send_keys("pycon" 
+[175,51][399,67]from selenium import webdriver 
+[373,229][509,245]not in driver page 
+[175,139][281,155]assert "Python 
+[291,139][405,155]in driver title 
+[175,157][209,173]elem 
+[225,157][369,173]driver find_element 
+[175,175][265,191]elem.clear() 
+[227,229][251,243]"No 
+[315,229][339,243]fou 
+[255,229][311,243]results 
+[395,159][435,173]name( 
+[175,229][223,243]assert 
+[239,105][311,119]Mebdriver 
+[175,105][223,119]driver 
+[351,71][399,83]common 
+[513,231][561,243]source 
+[130,401][213,413]Irtallire collrctr 

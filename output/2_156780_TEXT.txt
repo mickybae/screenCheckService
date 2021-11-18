@@ -1,0 +1,3 @@
+[118,110][460,134]Verify you'reahuman to start your free trial 
+[129,151][181,163]Verify Email 
+[642,70][666,78]DOCS 

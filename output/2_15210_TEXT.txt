@@ -1,0 +1,13 @@
+[76,351][235,370]PitifulLastingWhoopingcrane 
+[303,227][369,245]X Haskell 
+[41,45][85,61]replsit 
+[63,105][149,121]Continue coding 
+[295,105][353,121]Newrepl 
+[391,379][467,395]Create Repl 
+[305,171][367,185]allonguogos 
+[327,197][367,211]Clolure 
+[77,265][149,279]Unnamned (2) 
+[327,297][367,311]QBasic 
+[77,309][239,323]Teccbol Wonie Python Tutorlal 
+[73,229][123,241]ngwfolder 
+[327,331][359,343]Forth 

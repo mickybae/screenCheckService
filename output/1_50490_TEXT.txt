@@ -1,0 +1,36 @@
+[105,99][220,126]keys("조고딩" 
+[21,206][122,230]1ast_height 
+[22,62][172,86]driverget("https 
+[495,271][659,291]body.scroliHeight) ; 
+[22,227][69,247]while 
+[21,165][173,185]SCROLL_PAUSE_TIME 
+[67,125][257,145]send_keys(Keys.RETURN) 
+[211,311][309,331]PAUSE_TIME) 
+[99,42][257,61]webdriverChrome() 
+[57,270][408,289]driver.execute_script("window. scroiiTo(o, 
+[23,1][207,19]import ur11ib request 
+[57,313][205,331]time.sleep(SCROLL 
+[83,85][275,103]driver.find_element_by 
+[143,293][223,311]1oad page 
+[75,189][189,207]scroll height 
+[143,209][197,227]driver 
+[203,209][335,227]execute_scriptl 
+[135,251][173,267]down 
+[73,293][137,309]Nait to 
+[417,273][489,289]document 
+[203,251][259,267]bottom 
+[67,107][103,123]send 
+[75,231][119,247]True: 
+[23,85][61,101]elem 
+[23,127][61,143]elem 
+[23,43][77,59]driver 
+[39,189][69,205]Get 
+[23,107][61,123]elem 
+[313,335][343,349]Ind 
+[90,377][173,391]executelcovand , 
+[459,335][497,349]15+ 
+[339,211][395,225]return 
+[399,211][471,225]document 
+[177,169][207,183]= 1 
+[411,391][473,403]Hne 321, In 
+[476,392][512,400]erecute 

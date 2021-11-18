@@ -1,0 +1,30 @@
+[441.4452998037748,47.16794970566215][469.9639926182061,63.83205029433785]Maps 
+[210.0,139.0][257.0,153.0]'Beolocate 
+[469.0,49.0][493.0,63.0]Bing 
+[331.0,63.0][451.0,77.0]abstracting the services AP 
+[88.0,347.0][153.0,361.0]sustainable by 
+[25.0,319.0][133.0,333.0]Support Read the Docs! 
+[5.0,179.0][89.0,193.0]Calcuhtina Distance 
+[211.0,9.0][253.0,23.0]enstablel 
+[198.0,452.0][243.0,465.0]argumcnt 
+[341.0,436.0][475.0,449.0]methods rcquire the argument 
+[118.0,8.0][201.0,21.0]'geopy readihedocs 
+[339.0,97.0][389.0,109.0]an address 
+[279.0,81.0][337.0,93.0]for resolving 
+[369.0,453.0][557.0,465.0]by default Geocoders rnay have additional 
+[303.0,453.0][343.0,465.0]Whichis 
+[531.0,49.0][581.0,61.0]Nomlritlm 
+[457.0,65.0][601.0,77.0]Geocodcrs each define atleist a 
+[393.0,289.0][451.0,301.0]coordlmates; 
+[409.0,81.0][473.0,93.0]strinBi and ma 
+[555.0,81.0][623.0,93.0]method Which 
+[571.0,97.0][609.0,109.0]settings 
+[315.0,141.0][425.0,153.0]address and coordinates: 
+[430.0,216.0][452.0,224.0]Vork, 
+[496.0,216.0][518.0,224.0]York 
+[392.0,98.0][560.0,106.0]Each Geocodcr 3ccepts any Credenuals 
+[344.0,82.0][402.0,90.0]OCatonron 
+[350.0,364.0][376.0,372.0]10117 
+[440.0,364.0][502.0,372.0]Curopcar Ulon 
+[6.0,162.0][48.0,170.0]Grocodrr 
+[478.0,82.0][506.0,90.0]Oene 

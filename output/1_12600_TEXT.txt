@@ -1,0 +1,21 @@
+[312,101][383,121]Firefox() 
+[175,245][281,263]driver closel) 
+[399,68][523,86]keys import Keys 
+[175,210][375,228]elem. send_keys(Keys RETURN) 
+[175,192][339,209]elem. send_keys("pycon" 
+[174,50][399,67]from selenium import webdriver 
+[175,139][281,155]assert "Python 
+[291,139][405,155]in driver title 
+[175,157][209,173]elem 
+[225,157][391,173]driver find_element_by 
+[175,175][265,191]elem clear() 
+[403,229][509,245]in driver page 
+[239,105][311,119]Webdriver 
+[175,105][223,119]driver 
+[175,229][223,243]assert 
+[255,229][311,243]results 
+[315,229][361,243]found  
+[373,229][399,243]not 
+[395,159][427,173]name 
+[351,71][399,83]common 
+[513,231][561,243]source 

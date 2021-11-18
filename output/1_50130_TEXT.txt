@@ -1,0 +1,14 @@
+[55,14][172,40]image.c1ick() 
+[54,58][112,82]imgUr1 
+[133,58][454,82]driver.find_element_by_css_selector(" 
+[23,0][197,20]for image in images: 
+[57,39][171,59]time sleep(3) 
+[459,61][701,81]n3VNCb" ) . get_attribute("src" 
+[57,81][351,101]ur11ib. request.urlretrieve(imgUr1, 
+[357,83][445,101]str(count) 
+[39,145][163,163]driver closel) 
+[57,103][103,119]count 
+[127,103][173,119]count 
+[50,433][175,448]rexceptlons ElenentlotInt 
+[90,377][173,391]executelcomand , 
+[411,391][513,403]Hne 321, In execute 

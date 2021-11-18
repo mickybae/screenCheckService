@@ -1,0 +1,31 @@
+[454,422][777,454]GSS_selestor 이걸이용해서 
+[22,24][122,48]1ast_height 
+[114,252][174,276]height 
+[56,294][156,318]Iast_height 
+[202,252][308,276]1ast_height: 
+[57,151][223,171]#Nait to load page 
+[89,233][147,253]height 
+[503,213][617,233]scrol1 height 
+[75,5][189,25]scrol1 height 
+[57,213][309,233]# Calculate new scrol1 height 
+[57,171][307,191]time sleep(SCROLL_PAUSE_TIME) 
+[57,109][411,129]driver execute_script("window.scrollTo(o, 
+[417,109][658,129]document body. scroliHeight); 
+[195,275][285,295]element_by 
+[203,27][395,47]execute_script("return 
+[229,234][665,253]execute_script("return documentbody. scroliHeight") 
+[91,275][189,293]driver find 
+[175,297][267,315]new_height 
+[323,277][395,293]selectorl 
+[57,255][79,271]if 
+[23,7][69,23]# Get 
+[169,235][223,251]driver 
+[203,91][259,107]bottom 
+[135,91][197,107]down to 
+[75,69][119,85]True: 
+[23,69][69,85]While 
+[143,29][197,45]driver 
+[315,215][343,231]and 
+[83,257][115,271]new 
+[57,237][87,251]new 
+[399,29][471,43]document 

@@ -1,0 +1,27 @@
+[383,109][421,123]APIkey 
+[571,95][609,109]scttings 
+[303,451][343,465]Whichis 
+[392,285][449,299]coordinates; 
+[210,137][257,151]'gcolocate 
+[244,108][349,122]Interact wlthlls service 
+[198,108][233,122]needed 
+[198,466][257,480]Birf accepts 
+[241,79][337,93]mcthod for resolving 
+[330,61][559,75]abstracting the scrvicc $ API Gcocodcrs cach dchnc 
+[222,47][371,61]Beolocation service You might use 
+[409,49][519,63]Coogle Maps Bing Maps 
+[118,8][201,21]'geopy readinedocs 
+[275,95][329,107]coordinatcs 
+[211,287][347,299]findthe addresscorrespondiing 
+[5,241][53,253]Exceptlon 
+[555,79][623,91]mcthod which 
+[67,37][101,49]GcoPy 
+[531,49][615,61]Nominatim has its 
+[496,214][518,222]York 
+[248,214][288,222]Uu ]ldina 
+[440,362][502,370]Furancnr Nnon 
+[270,402][306,410]45573 
+[342,438][412,446]mncthods rcquirc 
+[200,50][222,58]Each 
+[298,224][336,232]Latitude 
+[368,254][416,260]trnn 

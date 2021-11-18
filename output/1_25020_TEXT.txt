@@ -1,0 +1,15 @@
+[141,421][757,457]다시 코드로 와서 작은 이미지들올 선택하는 코드가 필요하켓조? 
+[151,115][301,131]find_element_by_name( "9" 
+[67,145][235,161]elen.send_keys(Keys.RETURN) 
+[255,57][357,71]keys iriport Keys 
+[121,87][235,101]webdriver Chromel) 
+[65,101][107,115]driver 
+[127,161][169,175]Python 
+[177,161][235,175]In driver 
+[79,175][107,189]elem 
+[109,205][211,219]send keys("nycon 
+[79,249][167,263]drivorcloscl) 
+[97,57][149,69]seleniun 
+[65,87][107,99]driver 
+[214,60][252,68]Comimon 
+[110,118][148,126]driver 

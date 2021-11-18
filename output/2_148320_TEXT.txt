@@ -1,0 +1,15 @@
+[326,317][459,333]requiremcnts txt (line 1)) 
+[158,445][381,461]Installing collected packages: geographiclib , 
+[449,39][493,53]share E 
+[717,39][751,53]Bgtalk 
+[211,135][241,149]Donl) 
+[211,147][241,161]Catl 
+[191,173][225,187]dhil 
+[168,399][211,413]Butlding 
+[260,399][329,413]gsographiclib 
+[260,411][329,425]geographiclib 
+[159,457][363,471]Succcssfully installcd gcogrorhiclib 1.49 
+[283,319][311,331]Cfrom 
+[499,413][523,425]done' 
+[159,435][221,447]Successfmly 
+[223,435][319,447]buile geographiclb 

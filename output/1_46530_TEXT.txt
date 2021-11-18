@@ -1,0 +1,34 @@
+[56,128][308,153]time. sleep(SCROLL_PAUSE_TIHE) 
+[502,190][652,214]body. scrollHeight 
+[114,212][174,236]height 
+[490,232][558,256]c1ickO 
+[98,294][302,318]driver.find_elements_by 
+[202,212][308,236]1ast_height: 
+[56,66][410,90]driverexecute_script("window.scroliTole, 
+[73,110][223,131]Wait to load page 
+[349,172][617,193]compare With last scrol1 height 
+[193,172][309,193]scroll height 
+[417,69][659,89]document body.scrollHeight); 
+[22,298][77,318]images 
+[91,233][189,253]driver find 
+[209,255][267,275]height 
+[57,255][155,275]1ast_height 
+[89,193][147,213]height 
+[323,235][471,255]selector("mye4qd 
+[195,235][285,255]element_by 
+[305,299][421,317]css_selector( 
+[169,193][223,211]driver 
+[433,299][533,317]rg_1.Q4Lukld' 
+[73,49][129,67]Scrol1 
+[21,29][69,45]While 
+[57,215][79,231]if 
+[75,29][119,45]True: 
+[315,175][343,191]and 
+[75,175][119,191]Calcu 
+[203,49][259,65]bottom 
+[23,319][69,335]count 
+[83,217][115,231]new 
+[57,197][87,211]new 
+[175,259][207,273]new 
+[159,177][191,191]new 
+[135,51][173,65]down 

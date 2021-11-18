@@ -1,0 +1,14 @@
+[29,59][73,77]oogle 
+[122,181][209,199]Getting Started 
+[225,182][371,200]Selenlium Python Bindings 
+[108,284][231,302]Selenium with Python 
+[244,284][401,302]Selenium Python Bindings 2 
+[263,371][449,389]예제로 바우는 파이씬 프로그래망 
+[109,373][257,389]파이씬 Selenium 사용하기 
+[109,58][223,73]python selenium example 
+[380,182][464,196]docurnentation 
+[332,313][381,327]WebDriver , 
+[337,403][365,417]성되어 
+[165,95][193,107]돕영상 
+[217,95][245,107]이어지 
+[364,228][388,236]drmer 

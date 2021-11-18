@@ -1,0 +1,28 @@
+[201,41][277,57]Geocoders 
+[210,161][257,175]'Beolocite 
+[99,379][155,393]subscribing 
+[329,85][453,99]abstracting the services API 
+[25,319][133,333]Support Read the Docs! 
+[4,232][39,246]Logp na 
+[118,8][201,21]'geopy readihedocs 
+[415,458][475,471]the argument 
+[5,197][27,209]Data 
+[341,459][383,471]methods 
+[199,459][241,471]Locators' 
+[221,87][245,99]class 
+[3,379][37,391]Uocher 
+[457,87][599,99]Geocoders each define atleista 
+[393,311][451,323]coordinates; 
+[555,103][623,115]method which 
+[477,103][509,115]dehne 
+[315,163][427,175]address and coordinates: 
+[409,103][473,115]strinB and ma 
+[383,133][421,145]APIkeY 
+[245,133][367,145]interact with its scrvicc cB 
+[571,119][609,131]settings 
+[339,119][561,131]anaddress Each Geocoder accepts any credentials 
+[226,248][294,256]printlocation 
+[276,120][326,128]Coorunates 
+[0,106][36,114]Huromc 
+[298,248][336,254]ttvde 
+[226,368][262,374]Ocacior 

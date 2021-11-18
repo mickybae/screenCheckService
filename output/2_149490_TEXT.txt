@@ -1,0 +1,11 @@
+[158,445][381,461]Installing collected packages: geographiclib , 
+[191,172][245,187]geolocator 
+[717,39][751,53]Batalk 
+[509,353][557,367]tt (linc 
+[260,411][329,425]geographiclib 
+[243,400][329,413]for geographiclb 
+[169,35][231,47]and HoduLes 
+[33,71][57,83]Flos 
+[257,173][333,185]Nominatimfuser 
+[283,319][311,331]Cfrom 
+[385,449][413,461]geopy 

@@ -1,0 +1,17 @@
+[279,275][321,291]height 
+[169,275][241,291]last_height 
+[427,141][601,157]document bodyscrollleight); 
+[273,245][351,261]last_height: 
+[157,67][219,81]Get scroll 
+[145,83][217,97]last_height 
+[145,305][185,319]imaBes 
+[193,261][229,275]break 
+[249,231][381,245]driver.execute_script 
+[181,215][265,229]Calculate new 
+[279,127][315,141]ottoml 
+[181,127][253,141]Scroldown 
+[323,83][369,97]scriptl 
+[389,231][429,243]return 
+[433,231][483,243]document 
+[231,83][271,95]driver 
+[146,322][178,330]Count 

@@ -1,0 +1,24 @@
+[312,422][588,454]그리고 실행올 해보젯습니다 
+[175,121][303,139]driver get("https 
+[189,210][391,228]elem. send_keys(Keys RETURN) 
+[387,157][477,175]by_name( "q") 
+[400,68][523,86]keys import Keys 
+[175,51][399,67]from selenium import webdriver 
+[189,247][295,263]driver closel) 
+[439,229][523,245]driver page 
+[247,141][295,157]Python 
+[329,139][421,155]driver title 
+[189,157][223,173]elem 
+[241,157][383,173]driver find_element 
+[189,193][303,209]elem . send_keysl 
+[247,229][325,243]Noresults 
+[387,229][413,243]not 
+[329,229][369,243]found 
+[239,105][361,119]WebdriverChrome 
+[189,229][237,243]assert 
+[175,105][223,119]driver 
+[189,141][237,155]assert 
+[403,123][435,137]coml 
+[307,195][347,209]pycon 
+[351,71][399,83]common 
+[527,231][575,243]Source 

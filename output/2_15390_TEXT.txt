@@ -1,0 +1,8 @@
+[41,45][85,61]replsit 
+[63,105][149,121]Continue coding 
+[295,105][353,121]New repl 
+[307,289][403,305]Doscribe Your repl 
+[391,379][467,395]Create Repl 
+[327,145][367,159]Python 
+[77,265][149,279]Unnamned (2) 
+[77,309][239,323]Teccbol Wonle Python Tutorlal 

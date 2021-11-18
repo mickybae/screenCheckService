@@ -1,0 +1,33 @@
+[156,324][216,348]imgUr1 
+[160,220][366,244]elem. send_keys("조고딩" ) 
+[158,262][508,286]imadriverfind_elements_by_css_selector( 
+[161,347][453,368]urllib.request urlretrieve(imgUr1, 
+[435,327][549,347]css_selector( 
+[160,159][215,179]driver 
+[237,325][335,345]driver.find 
+[221,201][413,221]driver find_element_by 
+[341,327][429,347]element_by 
+[159,119][343,139]import ur11ib.request 
+[125,263][147,283]11 
+[125,345][147,365]15 
+[158,98][259,118]import time 
+[469,78][567,98]import Keys 
+[425,78][463,98]keys 
+[125,283][147,303]12 
+[161,389][309,409]# assert "Python" 
+[161,243][395,263]elem. send_keys(Keys RETURN) 
+[125,243][147,261]10 
+[161,307][275,325]time . sleep(3) 
+[125,367][147,385]16 
+[125,325][147,343]14 
+[341,389][447,407]drivertitle 
+[125,305][147,323]13 
+[417,203][497,221]name("9") 
+[427,182][677,200]co krlimghp?hi-kogtab-Wi8ogb1 
+[161,59][421,77]from selenium import webdriver 
+[161,203][199,219]elem 
+[161,79][361,95]from selenium.webdriver 
+[191,3][213,17]Help 
+[367,81][421,95]common 
+[13,129][43,141]Sapts 
+[150,4][182,12]Teminal 

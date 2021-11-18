@@ -1,0 +1,37 @@
+[236,178][466,210]driver.getO"https:/ 
+[341,150][560,180]webdriver.Chrome() 
+[236,94][797,124]from selenium. webdriver.commonkeys import Keys 
+[344,236][712,266]driver.find_element_by_name("9" 
+[236,294][514,323]# elem. send_keys("pycon 
+[236,322][584,351]# elem. send_keys(Keys.RETURN) 
+[259,379][432,408]driver close() 
+[237,65][596,94]from selenium import webdriver 
+[576,351][854,380]not in driver page_sour 
+[471,182][652,210]'WWW . google. com/ 
+[236,266][408,294]# elem clear() 
+[354,210][432,236]Python 
+[260,352][338,376]assert 
+[484,210][632,234]driver title 
+[448,210][478,234]in 
+[236,210][338,234]# assert 
+[192,380][222,404]12 
+[192,352][220,376]11 
+[192,324][222,348]10 
+[484,352][552,376]found 
+[238,152][314,176]driver 
+[354,352][478,376]'No results 
+[236,238][316,262]# elem 
+[207,183][221,205]5 
+[181,23][253,41]googlepy X 
+[39,207][95,223]google Py 
+[39,167][77,183]Sciipts 
+[245,51][303,67]googlepy 
+[39,227][97,241]pyvenv cig 
+[39,187][131,201]chromedhiver exe 
+[31,109][83,123]selenium 
+[19,89][73,103]JOCODING 
+[51,71][153,85]google py selenium 
+[167,49][217,63]selenium 
+[39,129][81,141]Include 
+[19,51][93,63]OPEN EDITORS 
+[19,25][69,37]PXPLORFR 

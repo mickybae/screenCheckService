@@ -1,0 +1,15 @@
+[341,291][667,335]가상 환경 들어가는 방법 
+[281,419][617,458]그리고 octivote라고 입력올 하면 
+[261,197][405,215]A11 rights reserved 
+[25,229][163,247]C:ljocoding python 
+[25,261][177,279]C:ljocoding;cd selen 
+[25,181][243,197]Microsoft Hindows [Version 10 
+[259,181][345,197]18362.1082] 
+[27,197][255,213](c) 2019 Microsoft Corporation. 
+[187,229][287,245]venv selenium 
+[209,261][257,277]cripts 
+[25,153][81,167]TERMINAL 
+[97,153][155,167]PROBLFMS 
+[171,153][217,167]OUTPUT 
+[231,153][323,167]DEBUG CONSOLE 
+[743,153][773,167]cmd 

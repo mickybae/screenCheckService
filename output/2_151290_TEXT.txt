@@ -1,0 +1,27 @@
+[199.4187618062809,437.1862665287933][223.95242414719934,452.8137334712067]Bino 
+[351.0,65.0][555.0,79.0]address Each Geocoder accepts any credential 
+[355.0,455.0][427.0,469.0]typcs o valucs: 
+[99.0,379.0][155.0,393.0]subscribing 
+[25.0,319.0][133.0,333.0]Support Read the Docs! 
+[331.0,33.0][453.0,47.0]abstracting the servicesAPI 
+[210.0,109.0][257.0,123.0]'Beolocate 
+[211.0,9.0][257.0,23.0]enstoblel 
+[198.0,422.0][243.0,435.0]argumcnt 
+[341.0,406.0][475.0,419.0]methods require the argument 
+[571.0,67.0][609.0,79.0]scttings 
+[45.0,409.0][97.0,421.0]Think You! 
+[457.0,35.0][599.0,47.0]Geocoders each dehine atleast a 
+[241.0,455.0][355.0,467.0]mcthods may rcturndhrcc 
+[369.0,423.0][557.0,435.0]by dcfault Gcocodcrs rTay have additional 
+[303.0,423.0][343.0,435.0]Whichis 
+[199.0,407.0][241.0,419.0]Locators' 
+[241.0,51.0][337.0,63.0]mcthod for resolving 
+[409.0,51.0][509.0,63.0]strinBr and may dehne 
+[555.0,51.0][623.0,63.0]mcthod which 
+[5.0,197.0][27.0,209.0]Data 
+[315.0,111.0][425.0,123.0]address and coordinates: 
+[200.0,68.0][236.0,76.0]Tcsolves 
+[350.0,334.0][376.0,342.0]10117 
+[314.0,334.0][344.0,342.0]Bcruin 
+[228.0,166.0][262.0,174.0]ocatior 
+[226.0,314.0][262.0,322.0]locatior 

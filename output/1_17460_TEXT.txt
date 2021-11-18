@@ -1,0 +1,9 @@
+[653,151][788,203]Google 
+[79,173][247,191]elemi, se7d_keys(Keys.RETURI) 
+[255,57][357,71]keys iriport Keys 
+[65,101][107,115]drivcr 
+[79,145][155,159]elem clearl) 
+[79,161][217,175]@lem send_keys("pycon" 
+[65,87][107,99]driver 
+[127,117][169,129]Python 
+[79,191][119,203]assort 

@@ -1,0 +1,8 @@
+[791,421][854,465]pip 
+[229,421][669,461]'Pipinstoll selenium' 이라고 입력올 하시면 
+[25,194][403,215](selenium) C:ljocodinglseleniumlScripts>pip instal1 
+[25,153][81,167]TERMINA 
+[97,153][155,167]PROBLFMS 
+[171,153][217,167]OUTPUT 
+[231,153][323,167]DEBUG CONSOLE 
+[743,153][773,167]cmd 
