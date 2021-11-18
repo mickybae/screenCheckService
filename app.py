@@ -124,10 +124,75 @@ def save_checker(obj1, obj2): #파일저장조건확인
 
     return result
 
+#Object정보저장
+def fnSaveObjectList(tempList):
 
-#주기적으로 웹 호출하여 동작시킴
-#주기적으로 웹 호출하여 동작시킴
-#주기적으로 웹 호출하여 동작시킴
+    insertValue = ""
+    for file in tempList:
+        fileObject = open("./output/" + file, "r", encoding='UTF8')
+        data = fileObject.read().replace("'", "").replace('"', '').replace(",", "^^")
+        arrTemp = file.split('_')
+        if data is None:
+            data = "Empty"
+        if data.strip() is not None:
+            if insertValue == "":
+                insertValue = "('" + arrTemp[0] + '_' + arrTemp[1] + "', " + arrTemp[0] + ", '" + data + "', now())"
+            else:
+                insertValue = insertValue + ",('" + arrTemp[0] + '_' + arrTemp[1] + "', " + arrTemp[
+                    0] + ",'" + data + "', now())"
+
+    # Conn 열고 업데이트 수행 후
+    try:
+        conn = mysql.connector.connect(user='K2020509', password='K2020513',
+                                       host='dbscs.cf0f2mdds5gb.ap-northeast-2.rds.amazonaws.com',
+                                       database='METAGENSERVICE')
+        curs = conn.cursor()
+        strSqlInsert = "INSERT INTO METAGENSERVICE.CONTENTMETADATA_OBJECTDETECTION (CMSCENE_SCENE, CMSCENE_CONTENTMASTER_CID, NAME, CREATEDDATE) VALUES "
+        strSqlInsert = strSqlInsert + insertValue
+        print(strSqlInsert)
+        curs.execute(strSqlInsert)
+        conn.commit()
+    except Exception as e:
+        return str(e)
+    finally:
+        conn.close()
+    return True
+
+#Text 정보저장
+def fnSaveTextList(tempList):
+    insertValue = ""
+    for file in tempList:
+        fileObject = open("./output/"+file, "r", encoding='UTF8')
+        data = fileObject.read().replace("'","").replace('"','').replace(",","^^")
+        arrTemp = file.split('_')
+        if data is None:
+            data = "Empty"
+        if data.strip() is not None:
+            if insertValue == "":
+                insertValue = "('" + arrTemp[0] + '_' + arrTemp[1] + "', " + arrTemp[0] + ", '" + data + "', now())"
+            else:
+                insertValue = insertValue + ",('" + arrTemp[0] + '_' + arrTemp[1] + "', " + arrTemp[0] + ",'" + data + "', now())"
+
+
+    # Conn 열고 업데이트 수행 후
+    try:
+        conn = mysql.connector.connect(user='K2020509', password='K2020513',
+                                           host='dbscs.cf0f2mdds5gb.ap-northeast-2.rds.amazonaws.com',
+                                           database='METAGENSERVICE')
+        curs = conn.cursor()
+        strSqlInsert = "INSERT INTO METAGENSERVICE.CONTENTMETADATA_OCR (CMSCENE_SCENE, CMSCENE_CONTENTMASTER_CID, TEXTDATA, CREATEDDATE) VALUES "
+        strSqlInsert = strSqlInsert + insertValue
+        print(strSqlInsert)
+        curs.execute(strSqlInsert)
+        conn.commit()
+    except Exception as e:
+        return str(e)
+    finally:
+        conn.close()
+    return True
+
+
+
 #주기적으로 웹 호출하여 동작시킴
 @app.route('/makeScreenShot')
 def makeScreenShot():
@@ -248,14 +313,34 @@ def makeScreenShot():
 def makeMetaData():
     resultDict = {}
     resultList = []
+    saveObjectList = []
+    saveTextList = []
     path_dir = './output'
     filelist = os.listdir(path_dir)
     for file in filelist:
-        print(file)
+        arrtemp = file.split('_',2)
+        if (arrtemp[2].split('.')[0]) == 'OBJECT':
+            #print('Object : ' + file)
+            saveObjectList.append(file)
+        else:
+            #print('TEXT : ' + file)
+            saveTextList.append(file)
+
+    # print(saveObjectList)
+    # print(saveTextList)
+
+    if fnSaveObjectList(saveObjectList) == True:
+        result = True
+
+    if fnSaveTextList(saveTextList) == True:
+        result = True
+
+
+
 
     resultDict['code'] = "C0000"
     resultDict['message'] = 'SUCCESS'
-    resultDict['data'] =json.dumps(filelist)
+    resultDict['data'] =json.dumps(result)
     return json.dumps(resultDict)
 
 
