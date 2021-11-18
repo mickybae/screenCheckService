@@ -1,4 +1,5 @@
 import json
+import os
 import sys
 from flask import Flask
 from flask import request
@@ -245,8 +246,17 @@ def makeScreenShot():
 #요청 및 완료된 목록 조회
 @app.route('/makeMetaData')
 def makeMetaData():
+    resultDict = {}
+    resultList = []
+    path_dir = './output'
+    filelist = os.listdir(path_dir)
+    for file in filelist:
+        print(file)
 
-    return True
+    resultDict['code'] = "C0000"
+    resultDict['message'] = 'SUCCESS'
+    resultDict['data'] =json.dumps(filelist)
+    return json.dumps(resultDict)
 
 
 
