@@ -845,6 +845,58 @@ def detail():
     return json.dumps(resultDict)
 
 
+#JSON DATA조회
+@app.route('/openAPIs/contentMetaData', methods=['GET', 'POST'])
+def contentMetaData():
+    arrValue = {}  # dict구조체 사용
+    resultDict = {}
+    resultList = {}
+    if request.method == 'GET':
+        arrValue['userid'] = request.args['userid']
+        arrValue['api_token'] = request.args['api_token']
+        arrValue['cid'] = request.args['cid']
+
+        if check_usertoken('web', arrValue['userid'], arrValue['api_token']):
+            try:
+                conn = mysql.connector.connect(user='K2020509', password='K2020513',
+                                               host='dbscs.cf0f2mdds5gb.ap-northeast-2.rds.amazonaws.com',
+                                               database='METAGENSERVICE')
+                curs = conn.cursor()
+                strSql = "SELECT CS.SCENE, CM.CONTENTLANGUAGE"
+                strSql = strSql + ", (SELECT NAME FROM METAGENSERVICE.CONTENTMETADATA_OBJECTDETECTION WHERE CMSCENE_SCENE = CS.SCENE ) AS NAME "
+                strSql = strSql + ", (SELECT TEXTDATA FROM METAGENSERVICE.CONTENTMETADATA_OCR WHERE CMSCENE_SCENE = CS.SCENE ) AS TEXTDATA "
+                strSql = strSql + " FROM METAGENSERVICE.CONTENTMASTER AS CM "
+                strSql = strSql + " INNER JOIN CMSCENE AS CS ON CM.CID = CS.CONTENTMASTER_CID "
+                strSql = strSql + " WHERE CM.CID = " + arrValue['cid']
+                strSql = strSql + " GROUP BY CS.SCENE, CM.CONTENTLANGUAGE, NAME, TEXTDATA "
+                strSql = strSql + " ORDER BY CS.TIME ASC "
+
+                curs.execute(strSql)
+                rows = curs.fetchall()
+                print(strSql)
+                print(json.dumps(rows))
+
+                if not rows:
+                    resultList['api_token'] = "no have"
+                else:
+                    resultList['count'] = rows[0][0]
+
+                resultDict['code'] = "C0000"
+                resultDict['message'] = 'SUCCESS'
+                resultDict['data'] = json.dumps(rows)
+
+                conn.commit()
+            except Exception as e:
+                return str(e)
+            finally:
+                conn.close()
+
+        else:
+            resultDict['code'] = "E0000"
+            resultDict['message'] = 'ERROR'
+
+    return json.dumps(resultDict)
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=9900, debug=True)
 
