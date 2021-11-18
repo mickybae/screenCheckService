@@ -9,10 +9,20 @@ import cv2
 import numpy as np
 import hashlib
 import random
+from datetime import datetime
 from jsonify.convert import jsonify
 import urllib.request
 import matplotlib
 from matplotlib import pyplot as plt
+
+class DateTimeEncoder(json.JSONEncoder):
+    def default(self, o):
+        if isinstance(o, datetime):
+            return o.isoformat()
+
+        return json.JSONEncoder.default(self, o)
+
+
 
 app = Flask(__name__)
 CORS(app)
@@ -789,6 +799,49 @@ def list_content():
             resultDict['code'] = "E0000"
             resultDict['message'] = 'ERROR'
 
+    return json.dumps(resultDict)
+
+#요청건의 상세조회
+@app.route('/content/detail', methods=['GET', 'POST'])
+def detail():
+    arrValue = {}  # dict구조체 사용
+    resultDict = {}
+    resultList = {}
+    if request.method == 'GET':
+        arrValue['userid'] = request.args['userid']
+        arrValue['api_token'] = request.args['api_token']
+        arrValue['cid'] = request.args['cid']
+
+        if check_usertoken('web', arrValue['userid'], arrValue['api_token']):
+            try:
+                conn = mysql.connector.connect(user='K2020509', password='K2020513',
+                                               host='dbscs.cf0f2mdds5gb.ap-northeast-2.rds.amazonaws.com',
+                                               database='METAGENSERVICE')
+                curs = conn.cursor()
+                strSql = "SELECT CID, CONTENTTITLE, CONTENTURL, PLAYTIME, SENSETIVESECOND, OPTIONSTT, OPTIONOCR, OPTIONOBJDETECT, STATUS, MODIFIEDDATE, CREATEDDATE FROM METAGENSERVICE.CONTENTMASTER"
+                strSql = strSql + " WHERE MEMBER_MID = '" + arrValue['userid'] +"' "
+                strSql = strSql + " AND CID = " + arrValue['cid']
+
+                curs.execute(strSql)
+                rows = curs.fetchall()
+                print(strSql)
+
+                if not rows:
+                    rows = "Have not Data"
+
+                resultDict['code'] = "C0000"
+                resultDict['message'] = 'SUCCESS'
+                resultDict['data'] = json.dumps(rows, cls=DateTimeEncoder)
+
+                conn.commit()
+            except Exception as e:
+                return str(e)
+            finally:
+                conn.close()
+
+        else:
+            resultDict['code'] = "E0000"
+            resultDict['message'] = 'ERROR'
     return json.dumps(resultDict)
 
 
