@@ -15,6 +15,7 @@ from matplotlib import pyplot as plt
 
 app = Flask(__name__)
 CORS(app)
+
 #대상영상 저장
 def save_video(fileUrl, fileid):
     savename = "./workfiles/" + fileid + ".mp4"
@@ -160,9 +161,9 @@ def makeScreenShot():
         # print(fUrl)
         # print(fSensetive)
         #파일 아이디와 URL을 받으면
-        # fUrl = "http://127.0.0.1/datas/test2.mp4"
-        # fId = "C000002"
-        # fSensetive = 3 #초당 프레임수
+        #fUrl = "http://127.0.0.1/datas/test2.mp4"
+        #fId = "C000002"
+        #fSensetive = 3 #초당 프레임수
 
         # 파일을 다운로드 하고
         save_video(fUrl, fId)
@@ -641,46 +642,52 @@ def fin_count():
     return json.dumps(resultDict)
 
 #요청 및 완료된 목록 조회
-# @app.route('/content/fin_count', methods=['GET', 'POST'])
-# def fin_count():
-#     arrValue = {}  # dict구조체 사용
-#     resultDict = {}
-#     resultList = {}
-#     if request.method == 'GET':
-#         arrValue['userid'] = request.args['userid']
-#         arrValue['api_token'] = request.args['api_token']
-#         if check_usertoken('web', arrValue['userid'], arrValue['api_token']):
-#             try:
-#                 conn = mysql.connector.connect(user='K2020509', password='K2020513',
-#                                                host='dbscs.cf0f2mdds5gb.ap-northeast-2.rds.amazonaws.com',
-#                                                database='METAGENSERVICE')
-#                 curs = conn.cursor()
-#                 strSql = "SELECT COUNT(*) FROM METAGENSERVICE.CONTENTMASTER "
-#                 strSql = strSql + " WHERE MEMBER_MID = '" + arrValue['userid'] + "' AND STATUS = 'FINISH' "
-#                 curs.execute(strSql)
-#                 rows = curs.fetchall()
-#                 print(strSql)
-#                 if not rows:
-#                     resultList['api_token'] = "no have"
-#
-#                 else:
-#                     resultList['count'] = rows[0][0]
-#
-#                 resultDict['code'] = "C0000"
-#                 resultDict['message'] = 'SUCCESS'
-#                 resultDict['data'] = resultList
-#
-#                 conn.commit()
-#             except Exception as e:
-#                 return str(e)
-#             finally:
-#                 conn.close()
-#
-#         else:
-#             resultDict['code'] = "E0000"
-#             resultDict['message'] = 'ERROR'
-#
-#     return json.dumps(resultDict)
+@app.route('/content/list_content', methods=['GET', 'POST'])
+def list_content():
+    arrValue = {}  # dict구조체 사용
+    resultDict = {}
+    resultList = {}
+    if request.method == 'GET':
+        arrValue['userid'] = request.args['userid']
+        arrValue['api_token'] = request.args['api_token']
+        arrValue['fromdate'] = request.args['fromdate']
+        arrValue['enddate'] = request.args['enddate']
+        if check_usertoken('web', arrValue['userid'], arrValue['api_token']):
+            try:
+                conn = mysql.connector.connect(user='K2020509', password='K2020513',
+                                               host='dbscs.cf0f2mdds5gb.ap-northeast-2.rds.amazonaws.com',
+                                               database='METAGENSERVICE')
+                curs = conn.cursor()
+                strSql = "SELECT CID, CONTENTTITLE, CONTENTURL, PLAYTIME, STATUS FROM CONTENTMASTER"
+                strSql = strSql + " WHERE MEMBER_MID = '" + arrValue['userid'] +"' "
+                strSql = strSql + " AND CREATEDDATE BETWEEN '" + arrValue['fromdate'] + "' AND  '"+arrValue['enddate']+"' "
+                strSql = strSql + " ORDER BY STATUS DESC"
+
+                curs.execute(strSql)
+                rows = curs.fetchall()
+                print(strSql)
+                print(json.dumps(rows))
+
+                if not rows:
+                    resultList['api_token'] = "no have"
+                else:
+                    resultList['count'] = rows[0][0]
+
+                resultDict['code'] = "C0000"
+                resultDict['message'] = 'SUCCESS'
+                resultDict['data'] = json.dumps(rows)
+
+                conn.commit()
+            except Exception as e:
+                return str(e)
+            finally:
+                conn.close()
+
+        else:
+            resultDict['code'] = "E0000"
+            resultDict['message'] = 'ERROR'
+
+    return json.dumps(resultDict)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=9900, debug=True)
