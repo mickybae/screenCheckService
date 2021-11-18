@@ -242,9 +242,16 @@ def makeScreenShot():
     resultDict['data'] = counter
     return json.dumps(resultDict)
 
-# 여기 이하로는 웹 API 및 서비스 API 구분
-# 여기 이하로는 웹 API 및 서비스 API 구분
-# 여기 이하로는 웹 API 및 서비스 API 구분
+#요청 및 완료된 목록 조회
+@app.route('/makeMetaData')
+def makeMetaData():
+
+    return True
+
+
+
+
+
 # 여기 이하로는 웹 API 및 서비스 API 구분
 # 여기 이하로는 웹 API 및 서비스 API 구분
 
@@ -688,6 +695,7 @@ def list_content():
             resultDict['message'] = 'ERROR'
 
     return json.dumps(resultDict)
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=9900, debug=True)
